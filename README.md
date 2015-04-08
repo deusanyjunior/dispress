@@ -1,2 +1,22 @@
 # dispress
-an easy solution to control slides on presentations from distant locations.
+an easy solution to control slides at presentations from distant locations.
+
+## how to use
+
+the users will open the index.html page and they will be listening for changes.
+the client page has no control.
+you need to open the master.html and control the slides using the keys right
+and left from your keyboard. you can change the name of the master page for security reasons.
+
+the pages are using PubNub cloud service to communicate, so there's no need
+for any previous setup.
+we recommend you to use your own keys, and you can do it easily on PubNub web site.
+the free account permits 20 clients.
+every page will count as one client when opened on a browser, and it also include all master and client pages.
+
+## and..
+
+contributions, issues, and comments are welcome!
+
+= )<br>
+dj
