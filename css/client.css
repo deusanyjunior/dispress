@@ -1,0 +1,25 @@
+/*
+  client stylesheet
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: black;
+}
+
+#slides {
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+#slide {
+  display: inline-block;
+  height: 100%;
+  width: auto;
+}

@@ -1,101 +1,15 @@
 <html>
+
   <head>
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-      }
-      body {
-        background-color: black;
-      }
-      #slides {
-        vertical-align: middle;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-      }
-      #slide {
-        display: inline-block;
-        height: 100%;
-        width: auto;
-      }
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="css/client.css">
     <script src="http://cdn.pubnub.com/pubnub-3.7.1.min.js"></script>
-
-    <script>
-
-      // Current slide
-      var curSlide = 1;
-      var lastSlide = 0;
-
-      // Preload the slides and set the lastSlide number
-      function preloadSlide(number) {
-          var img = new Image ();
-          img.src = "slides/slide"+number+".svg";
-          img.number = number;
-          img.onload = function() {
-              lastSlide = img.number
-              preloadSlide(img.number+1);
-          }
-          img.onerror = function() {
-              lastSlide = img.number - 1;
-          }
-      }
-      preloadSlide(1);
-
-      // Get an unique pubnub id
-      var my_id = PUBNUB.uuid();
-
-      var pubnub_publish_key = 'demo'; // change this!
-      var pubnub_subscribe_key = 'demo'; // change this!
-
-      // Initialize with Publish & Subscribe Keys
-      var pubnub = PUBNUB.init({
-          publish_key: pubnub_publish_key,
-          subscribe_key: pubnub_subscribe_key,
-          uuid: my_id
-      });
-
-      // Subscribe to a channel
-      pubnub.subscribe({
-          channel: 'dj_press',
-          presence: function(m){console.log(m)},
-          message: parseMessage,
-          error: function (error) {
-           // Handle error here
-           console.log(JSON.stringify(error));
-          }
-      });
-
-      // Parse messages received from PubNub platform
-      function parseMessage( message ) {
-          if (typeof message.newSlide !== 'undefined') {
-            newSlide(message.newSlide);
-            // console.log(message.newSlide)
-          } else {
-            console.log(JSON.stringify(message))
-          }
-      }
-
-      // Define a new slide
-      function newSlide(slideNumber){
-          if (slideNumber < 1 || slideNumber > lastSlide) {
-            return;
-          }
-          curSlide = slideNumber;
-          document.getElementById("slide").setAttribute("src", "slides/slide"+curSlide+".svg");
-      }
-
-    </script>
-
+    <script src="js/client.js"></script>
   </head>
 
-  <body onload="newSlide(1)">
-
+  <body>
     <div id="slides">
       <img id="slide" src="dj.png"/>
     </div>
-
   </body>
+
 </html>
