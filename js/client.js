@@ -66,6 +66,7 @@ function newSlide(slideNumber){
     }
     curSlide = slideNumber;
     document.getElementById("slide").setAttribute("src", "slides/slide"+curSlide+".svg");
+    resizeSlide(); // some slides can have different sizes
 }
 
 // change image aspect

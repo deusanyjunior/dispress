@@ -8,7 +8,7 @@ var img_previous_slide = null
 var img_next_slide = null
 
 // start the main variables
-function initSystem() {
+function initAll() {
   img_slide = document.getElementById("slide");
   img_previous_slide = document.getElementById("previous_slide");
   img_next_slide = document.getElementById("next_slide");
@@ -83,14 +83,14 @@ function newSlide(slideNumber){
     img_slide.setAttribute("src", "slides/slide"+curSlide+".svg");
 
     if (curSlide == 1) {
-      img_previous_slide.setAttribute("src", "pubslidesfirst.svg");
+      img_previous_slide.setAttribute("src", "images/pubslidesfirst.svg");
     } else {
       img_previous_slide.setAttribute("src", "slides/slide"+(curSlide-1)+".svg");
     }
 
     console.log(curSlide+" "+lastSlide);
     if (curSlide == lastSlide) {
-      img_next_slide.setAttribute("src", "pubslideslast.svg");
+      img_next_slide.setAttribute("src", "images/pubslideslast.svg");
     } else {
       img_next_slide.setAttribute("src", "slides/slide"+(curSlide+1)+".svg");
     }
@@ -106,7 +106,7 @@ function prevSlide(){
     curSlide = curSlide - 1;
     img_slide.setAttribute("src", "slides/slide"+curSlide+".svg");
     if (curSlide === 1) {
-      img_previous_slide.setAttribute("src", "pubslidesfirst.svg");
+      img_previous_slide.setAttribute("src", "images/pubslidesfirst.svg");
     } else {
       img_previous_slide.setAttribute("src", "slides/slide"+(curSlide-1)+".svg");
     }
@@ -127,7 +127,7 @@ function nextSlide(){
     curSlide = curSlide + 1;
     img_slide.setAttribute("src", "slides/slide"+curSlide+".svg");
     if (curSlide === lastSlide) {
-      img_next_slide.setAttribute("src", "pubslideslast.svg");
+      img_next_slide.setAttribute("src", "images/pubslideslast.svg");
     } else {
       img_next_slide.setAttribute("src", "slides/slide"+(curSlide+1)+".svg");
     }
@@ -136,6 +136,7 @@ function nextSlide(){
           channel: 'pubslides',
           message: {"newSlide": curSlide, "my_id": my_id}
     });
+    resizeAll();
 }
 
 
@@ -243,7 +244,6 @@ function resizeAll() {
       img_next_slide.style.height = "auto";
     }
     div_timer.style.fontSize = div_timer.offsetHeight+"px";
-    console.log("resize");
 }
 
 // Function to configure a new event listener
